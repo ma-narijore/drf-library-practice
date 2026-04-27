@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Book(models.Model):
 
-    class Cover(models.TextChoices):
+    class Covers(models.TextChoices):
         HARD = 'HARD'
         SOFT = 'SOFT'
 
@@ -12,7 +12,7 @@ class Book(models.Model):
     author = models.CharField(max_length=100)
     cover = models.CharField(
         max_length=10,
-        choices=Cover.choices,
+        choices=Covers.choices,
     )
     inventory = models.PositiveIntegerField()
     daily_fee = models.DecimalField(max_digits=10, decimal_places=2)
