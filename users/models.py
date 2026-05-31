@@ -1,9 +1,14 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from users.managers import UserManager
+
 # Create your models here.
-class User(models.Model):
-    email = models.EmailField()
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
+class User(AbstractUser):
+    username = None
+    email = models.EmailField(unique=True)
     is_staff = models.BooleanField(default=False)
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+
+    objects = UserManager()
